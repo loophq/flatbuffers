@@ -90,8 +90,22 @@ public final class Monster extends Table {
   public Ability testarrayofsortedstruct(int j) { return testarrayofsortedstruct(new Ability(), j); }
   public Ability testarrayofsortedstruct(Ability obj, int j) { int o = __offset(62); return o != 0 ? obj.__assign(__vector(o) + j * 8, bb) : null; }
   public int testarrayofsortedstructLength() { int o = __offset(62); return o != 0 ? __vector_len(o) : 0; }
+  public boolean emptyBool() { int o = __offset(64); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
+  public boolean mutateEmptyBool(boolean emptyBool) { int o = __offset(64); if (o != 0) { bb.put(o + bb_pos, (byte)(emptyBool ? 1 : 0)); return true; } else { return false; } }
+  public long emptyLong() { int o = __offset(66); return o != 0 ? bb.getLong(o + bb_pos) : 0L; }
+  public boolean mutateEmptyLong(long emptyLong) { int o = __offset(66); if (o != 0) { bb.putLong(o + bb_pos, emptyLong); return true; } else { return false; } }
+  public int emptyInt() { int o = __offset(68); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
+  public boolean mutateEmptyInt(int emptyInt) { int o = __offset(68); if (o != 0) { bb.putInt(o + bb_pos, emptyInt); return true; } else { return false; } }
+  public boolean testTrueBool() { int o = __offset(70); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
+  public boolean mutateTestTrueBool(boolean testTrueBool) { int o = __offset(70); if (o != 0) { bb.put(o + bb_pos, (byte)(testTrueBool ? 1 : 0)); return true; } else { return false; } }
+  public int testZeroInt() { int o = __offset(72); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
+  public boolean mutateTestZeroInt(int testZeroInt) { int o = __offset(72); if (o != 0) { bb.putInt(o + bb_pos, testZeroInt); return true; } else { return false; } }
+  public long testZeroLong() { int o = __offset(74); return o != 0 ? bb.getLong(o + bb_pos) : 0L; }
+  public boolean mutateTestZeroLong(long testZeroLong) { int o = __offset(74); if (o != 0) { bb.putLong(o + bb_pos, testZeroLong); return true; } else { return false; } }
+  public byte testZeroByte() { int o = __offset(76); return o != 0 ? bb.get(o + bb_pos) : 0; }
+  public boolean mutateTestZeroByte(byte testZeroByte) { int o = __offset(76); if (o != 0) { bb.put(o + bb_pos, testZeroByte); return true; } else { return false; } }
 
-  public static void startMonster(FlatBufferBuilder builder) { builder.startObject(30); }
+  public static void startMonster(FlatBufferBuilder builder) { builder.startObject(37); }
   public static void addPos(FlatBufferBuilder builder, int posOffset) { builder.addStruct(0, posOffset, 0); }
   public static void addMana(FlatBufferBuilder builder, short mana) { builder.addShort(1, mana, 150); }
   public static void addHp(FlatBufferBuilder builder, short hp) { builder.addShort(2, hp, 100); }
@@ -135,6 +149,13 @@ public final class Monster extends Table {
   public static void startTestarrayofstring2Vector(FlatBufferBuilder builder, int numElems) { builder.startVector(4, numElems, 4); }
   public static void addTestarrayofsortedstruct(FlatBufferBuilder builder, int testarrayofsortedstructOffset) { builder.addOffset(29, testarrayofsortedstructOffset, 0); }
   public static void startTestarrayofsortedstructVector(FlatBufferBuilder builder, int numElems) { builder.startVector(8, numElems, 4); }
+  public static void addEmptyBool(FlatBufferBuilder builder, boolean emptyBool) { builder.addBoolean(30, emptyBool, false); }
+  public static void addEmptyLong(FlatBufferBuilder builder, long emptyLong) { builder.addLong(31, emptyLong, 0L); }
+  public static void addEmptyInt(FlatBufferBuilder builder, int emptyInt) { builder.addInt(32, emptyInt, 0); }
+  public static void addTestTrueBool(FlatBufferBuilder builder, boolean testTrueBool) { builder.addBoolean(33, testTrueBool, false); }
+  public static void addTestZeroInt(FlatBufferBuilder builder, int testZeroInt) { builder.addInt(34, testZeroInt, 0); }
+  public static void addTestZeroLong(FlatBufferBuilder builder, long testZeroLong) { builder.addLong(35, testZeroLong, 0L); }
+  public static void addTestZeroByte(FlatBufferBuilder builder, byte testZeroByte) { builder.addByte(36, testZeroByte, 0); }
   public static int endMonster(FlatBufferBuilder builder) {
     int o = builder.endObject();
     builder.required(o, 10);  // name

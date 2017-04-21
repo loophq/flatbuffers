@@ -16,11 +16,17 @@
 
 echo Compile then run the Java test.
 
+cd ..
+make
+cd tests
+../flatc monster_test.fbs --java --gen-mutable
+
 java -version
 
-testdir=$(readlink -fn `dirname $0`)
-thisdir=$(readlink -fn `pwd`)
-
+#testdir=$(readlink -fn `dirname $0`)
+#thisdir=$(readlink -fn `pwd`)
+testdir=`pwd`
+thisdir=`pwd`
 targetdir=${testdir}/target
 
 if [[ "$testdir" != "$thisdir" ]]; then

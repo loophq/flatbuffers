@@ -96,6 +96,7 @@ class JavaTest {
         Monster.addTest4(fbb, test4);
         Monster.addTestarrayofstring(fbb, testArrayOfString);
         Monster.addTestbool(fbb, false);
+        Monster.addTestTrueBool(fbb, true);
         Monster.addTesthashu32Fnv1(fbb, Integer.MAX_VALUE + 1L);
         Monster.addTestarrayoftables(fbb, sortMons);
         int mon = Monster.endMonster(fbb);
@@ -210,6 +211,10 @@ class JavaTest {
         TestEq(monster.name(), "MyMonster");
         // monster.friendly() // can't access, deprecated
 
+        TestNull(monster.emptyBool());
+        TestNull(monster.emptyInt());
+        TestNull(monster.emptyLong());
+
         Vec3 pos = monster.pos();
         TestEq(pos.x(), 1.0f);
         TestEq(pos.y(), 2.0f);
@@ -248,6 +253,7 @@ class JavaTest {
         TestEq(monster.testarrayofstring(1),"test2");
 
         TestEq(monster.testbool(), false);
+        TestEq(monster.testTrueBool(), true);
     }
 
     // this method checks additional fields not present in the binary buffer read from file
@@ -345,6 +351,12 @@ class JavaTest {
         TestEq(monsterObject.inventory(1), (int)inventory[1]);
         TestEq(monsterObject.inventoryLength(), inventory.length);
         TestEq(ByteBuffer.wrap(inventory), monsterObject.inventoryAsByteBuffer());
+    }
+
+    static void TestNull(Object a) {
+      if (a != null) {
+        throw new RuntimeException("Failed null assertion");
+      }
     }
 
     static <T> void TestEq(T a, T b) {
