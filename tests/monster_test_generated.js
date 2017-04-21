@@ -556,7 +556,7 @@ MyGame.Example.Stat.getRootAsStat = function(bb, obj) {
  */
 MyGame.Example.Stat.prototype.id = function(optionalEncoding) {
   var offset = this.bb.__offset(this.bb_pos, 4);
-  return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : undefined;
 };
 
 /**
@@ -564,7 +564,7 @@ MyGame.Example.Stat.prototype.id = function(optionalEncoding) {
  */
 MyGame.Example.Stat.prototype.val = function() {
   var offset = this.bb.__offset(this.bb_pos, 6);
-  return offset ? this.bb.readInt64(this.bb_pos + offset) : this.bb.createLong(0, 0);
+  return offset ? this.bb.readInt64(this.bb_pos + offset) : undefined;
 };
 
 /**
@@ -587,7 +587,7 @@ MyGame.Example.Stat.prototype.mutate_val = function(value) {
  */
 MyGame.Example.Stat.prototype.count = function() {
   var offset = this.bb.__offset(this.bb_pos, 8);
-  return offset ? this.bb.readUint16(this.bb_pos + offset) : 0;
+  return offset ? this.bb.readUint16(this.bb_pos + offset) : undefined;
 };
 
 /**
@@ -625,7 +625,7 @@ MyGame.Example.Stat.addId = function(builder, idOffset) {
  * @param {flatbuffers.Long} val
  */
 MyGame.Example.Stat.addVal = function(builder, val) {
-  builder.addFieldInt64(1, val, builder.createLong(0, 0));
+  builder.addFieldInt64(1, val, undefined);
 };
 
 /**
@@ -633,7 +633,7 @@ MyGame.Example.Stat.addVal = function(builder, val) {
  * @param {number} count
  */
 MyGame.Example.Stat.addCount = function(builder, count) {
-  builder.addFieldInt16(2, count, 0);
+  builder.addFieldInt16(2, count, undefined);
 };
 
 /**
@@ -751,7 +751,7 @@ MyGame.Example.Monster.prototype.mutate_hp = function(value) {
  */
 MyGame.Example.Monster.prototype.name = function(optionalEncoding) {
   var offset = this.bb.__offset(this.bb_pos, 10);
-  return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : undefined;
 };
 
 /**
@@ -939,7 +939,7 @@ MyGame.Example.Monster.prototype.testempty = function(obj) {
  */
 MyGame.Example.Monster.prototype.testbool = function() {
   var offset = this.bb.__offset(this.bb_pos, 34);
-  return offset ? !!this.bb.readInt8(this.bb_pos + offset) : false;
+  return offset ? !!this.bb.readInt8(this.bb_pos + offset) : undefined;
 };
 
 /**
@@ -962,7 +962,7 @@ MyGame.Example.Monster.prototype.mutate_testbool = function(value) {
  */
 MyGame.Example.Monster.prototype.testhashs32Fnv1 = function() {
   var offset = this.bb.__offset(this.bb_pos, 36);
-  return offset ? this.bb.readInt32(this.bb_pos + offset) : 0;
+  return offset ? this.bb.readInt32(this.bb_pos + offset) : undefined;
 };
 
 /**
@@ -985,7 +985,7 @@ MyGame.Example.Monster.prototype.mutate_testhashs32_fnv1 = function(value) {
  */
 MyGame.Example.Monster.prototype.testhashu32Fnv1 = function() {
   var offset = this.bb.__offset(this.bb_pos, 38);
-  return offset ? this.bb.readUint32(this.bb_pos + offset) : 0;
+  return offset ? this.bb.readUint32(this.bb_pos + offset) : undefined;
 };
 
 /**
@@ -1008,7 +1008,7 @@ MyGame.Example.Monster.prototype.mutate_testhashu32_fnv1 = function(value) {
  */
 MyGame.Example.Monster.prototype.testhashs64Fnv1 = function() {
   var offset = this.bb.__offset(this.bb_pos, 40);
-  return offset ? this.bb.readInt64(this.bb_pos + offset) : this.bb.createLong(0, 0);
+  return offset ? this.bb.readInt64(this.bb_pos + offset) : undefined;
 };
 
 /**
@@ -1031,7 +1031,7 @@ MyGame.Example.Monster.prototype.mutate_testhashs64_fnv1 = function(value) {
  */
 MyGame.Example.Monster.prototype.testhashu64Fnv1 = function() {
   var offset = this.bb.__offset(this.bb_pos, 42);
-  return offset ? this.bb.readUint64(this.bb_pos + offset) : this.bb.createLong(0, 0);
+  return offset ? this.bb.readUint64(this.bb_pos + offset) : undefined;
 };
 
 /**
@@ -1054,7 +1054,7 @@ MyGame.Example.Monster.prototype.mutate_testhashu64_fnv1 = function(value) {
  */
 MyGame.Example.Monster.prototype.testhashs32Fnv1a = function() {
   var offset = this.bb.__offset(this.bb_pos, 44);
-  return offset ? this.bb.readInt32(this.bb_pos + offset) : 0;
+  return offset ? this.bb.readInt32(this.bb_pos + offset) : undefined;
 };
 
 /**
@@ -1077,7 +1077,7 @@ MyGame.Example.Monster.prototype.mutate_testhashs32_fnv1a = function(value) {
  */
 MyGame.Example.Monster.prototype.testhashu32Fnv1a = function() {
   var offset = this.bb.__offset(this.bb_pos, 46);
-  return offset ? this.bb.readUint32(this.bb_pos + offset) : 0;
+  return offset ? this.bb.readUint32(this.bb_pos + offset) : undefined;
 };
 
 /**
@@ -1100,7 +1100,7 @@ MyGame.Example.Monster.prototype.mutate_testhashu32_fnv1a = function(value) {
  */
 MyGame.Example.Monster.prototype.testhashs64Fnv1a = function() {
   var offset = this.bb.__offset(this.bb_pos, 48);
-  return offset ? this.bb.readInt64(this.bb_pos + offset) : this.bb.createLong(0, 0);
+  return offset ? this.bb.readInt64(this.bb_pos + offset) : undefined;
 };
 
 /**
@@ -1123,7 +1123,7 @@ MyGame.Example.Monster.prototype.mutate_testhashs64_fnv1a = function(value) {
  */
 MyGame.Example.Monster.prototype.testhashu64Fnv1a = function() {
   var offset = this.bb.__offset(this.bb_pos, 50);
-  return offset ? this.bb.readUint64(this.bb_pos + offset) : this.bb.createLong(0, 0);
+  return offset ? this.bb.readUint64(this.bb_pos + offset) : undefined;
 };
 
 /**
@@ -1217,7 +1217,7 @@ MyGame.Example.Monster.prototype.mutate_testf2 = function(value) {
  */
 MyGame.Example.Monster.prototype.testf3 = function() {
   var offset = this.bb.__offset(this.bb_pos, 58);
-  return offset ? this.bb.readFloat32(this.bb_pos + offset) : 0.0;
+  return offset ? this.bb.readFloat32(this.bb_pos + offset) : undefined;
 };
 
 /**
@@ -1272,10 +1272,171 @@ MyGame.Example.Monster.prototype.testarrayofsortedstructLength = function() {
 };
 
 /**
+ * @returns {boolean}
+ */
+MyGame.Example.Monster.prototype.emptyBool = function() {
+  var offset = this.bb.__offset(this.bb_pos, 64);
+  return offset ? !!this.bb.readInt8(this.bb_pos + offset) : undefined;
+};
+
+/**
+ * @param {boolean} value
+ * @returns {boolean}
+ */
+MyGame.Example.Monster.prototype.mutate_emptyBool = function(value) {
+  var offset = this.bb.__offset(this.bb_pos, 64);
+
+  if (offset === 0) {
+    return false;
+  }
+
+  this.bb.writeInt8(this.bb_pos + offset, value);
+  return true;
+};
+
+/**
+ * @returns {flatbuffers.Long}
+ */
+MyGame.Example.Monster.prototype.emptyLong = function() {
+  var offset = this.bb.__offset(this.bb_pos, 66);
+  return offset ? this.bb.readInt64(this.bb_pos + offset) : undefined;
+};
+
+/**
+ * @param {flatbuffers.Long} value
+ * @returns {boolean}
+ */
+MyGame.Example.Monster.prototype.mutate_emptyLong = function(value) {
+  var offset = this.bb.__offset(this.bb_pos, 66);
+
+  if (offset === 0) {
+    return false;
+  }
+
+  this.bb.writeInt64(this.bb_pos + offset, value);
+  return true;
+};
+
+/**
+ * @returns {number}
+ */
+MyGame.Example.Monster.prototype.emptyInt = function() {
+  var offset = this.bb.__offset(this.bb_pos, 68);
+  return offset ? this.bb.readInt32(this.bb_pos + offset) : undefined;
+};
+
+/**
+ * @param {number} value
+ * @returns {boolean}
+ */
+MyGame.Example.Monster.prototype.mutate_emptyInt = function(value) {
+  var offset = this.bb.__offset(this.bb_pos, 68);
+
+  if (offset === 0) {
+    return false;
+  }
+
+  this.bb.writeInt32(this.bb_pos + offset, value);
+  return true;
+};
+
+/**
+ * @returns {boolean}
+ */
+MyGame.Example.Monster.prototype.testTrueBool = function() {
+  var offset = this.bb.__offset(this.bb_pos, 70);
+  return offset ? !!this.bb.readInt8(this.bb_pos + offset) : undefined;
+};
+
+/**
+ * @param {boolean} value
+ * @returns {boolean}
+ */
+MyGame.Example.Monster.prototype.mutate_testTrueBool = function(value) {
+  var offset = this.bb.__offset(this.bb_pos, 70);
+
+  if (offset === 0) {
+    return false;
+  }
+
+  this.bb.writeInt8(this.bb_pos + offset, value);
+  return true;
+};
+
+/**
+ * @returns {number}
+ */
+MyGame.Example.Monster.prototype.testZeroInt = function() {
+  var offset = this.bb.__offset(this.bb_pos, 72);
+  return offset ? this.bb.readInt32(this.bb_pos + offset) : undefined;
+};
+
+/**
+ * @param {number} value
+ * @returns {boolean}
+ */
+MyGame.Example.Monster.prototype.mutate_testZeroInt = function(value) {
+  var offset = this.bb.__offset(this.bb_pos, 72);
+
+  if (offset === 0) {
+    return false;
+  }
+
+  this.bb.writeInt32(this.bb_pos + offset, value);
+  return true;
+};
+
+/**
+ * @returns {flatbuffers.Long}
+ */
+MyGame.Example.Monster.prototype.testZeroLong = function() {
+  var offset = this.bb.__offset(this.bb_pos, 74);
+  return offset ? this.bb.readInt64(this.bb_pos + offset) : undefined;
+};
+
+/**
+ * @param {flatbuffers.Long} value
+ * @returns {boolean}
+ */
+MyGame.Example.Monster.prototype.mutate_testZeroLong = function(value) {
+  var offset = this.bb.__offset(this.bb_pos, 74);
+
+  if (offset === 0) {
+    return false;
+  }
+
+  this.bb.writeInt64(this.bb_pos + offset, value);
+  return true;
+};
+
+/**
+ * @returns {number}
+ */
+MyGame.Example.Monster.prototype.testZeroByte = function() {
+  var offset = this.bb.__offset(this.bb_pos, 76);
+  return offset ? this.bb.readInt8(this.bb_pos + offset) : undefined;
+};
+
+/**
+ * @param {number} value
+ * @returns {boolean}
+ */
+MyGame.Example.Monster.prototype.mutate_testZeroByte = function(value) {
+  var offset = this.bb.__offset(this.bb_pos, 76);
+
+  if (offset === 0) {
+    return false;
+  }
+
+  this.bb.writeInt8(this.bb_pos + offset, value);
+  return true;
+};
+
+/**
  * @param {flatbuffers.Builder} builder
  */
 MyGame.Example.Monster.startMonster = function(builder) {
-  builder.startObject(30);
+  builder.startObject(37);
 };
 
 /**
@@ -1487,7 +1648,7 @@ MyGame.Example.Monster.addTestempty = function(builder, testemptyOffset) {
  * @param {boolean} testbool
  */
 MyGame.Example.Monster.addTestbool = function(builder, testbool) {
-  builder.addFieldInt8(15, +testbool, +false);
+  builder.addFieldInt8(15, +testbool, +undefined);
 };
 
 /**
@@ -1495,7 +1656,7 @@ MyGame.Example.Monster.addTestbool = function(builder, testbool) {
  * @param {number} testhashs32Fnv1
  */
 MyGame.Example.Monster.addTesthashs32Fnv1 = function(builder, testhashs32Fnv1) {
-  builder.addFieldInt32(16, testhashs32Fnv1, 0);
+  builder.addFieldInt32(16, testhashs32Fnv1, undefined);
 };
 
 /**
@@ -1503,7 +1664,7 @@ MyGame.Example.Monster.addTesthashs32Fnv1 = function(builder, testhashs32Fnv1) {
  * @param {number} testhashu32Fnv1
  */
 MyGame.Example.Monster.addTesthashu32Fnv1 = function(builder, testhashu32Fnv1) {
-  builder.addFieldInt32(17, testhashu32Fnv1, 0);
+  builder.addFieldInt32(17, testhashu32Fnv1, undefined);
 };
 
 /**
@@ -1511,7 +1672,7 @@ MyGame.Example.Monster.addTesthashu32Fnv1 = function(builder, testhashu32Fnv1) {
  * @param {flatbuffers.Long} testhashs64Fnv1
  */
 MyGame.Example.Monster.addTesthashs64Fnv1 = function(builder, testhashs64Fnv1) {
-  builder.addFieldInt64(18, testhashs64Fnv1, builder.createLong(0, 0));
+  builder.addFieldInt64(18, testhashs64Fnv1, undefined);
 };
 
 /**
@@ -1519,7 +1680,7 @@ MyGame.Example.Monster.addTesthashs64Fnv1 = function(builder, testhashs64Fnv1) {
  * @param {flatbuffers.Long} testhashu64Fnv1
  */
 MyGame.Example.Monster.addTesthashu64Fnv1 = function(builder, testhashu64Fnv1) {
-  builder.addFieldInt64(19, testhashu64Fnv1, builder.createLong(0, 0));
+  builder.addFieldInt64(19, testhashu64Fnv1, undefined);
 };
 
 /**
@@ -1527,7 +1688,7 @@ MyGame.Example.Monster.addTesthashu64Fnv1 = function(builder, testhashu64Fnv1) {
  * @param {number} testhashs32Fnv1a
  */
 MyGame.Example.Monster.addTesthashs32Fnv1a = function(builder, testhashs32Fnv1a) {
-  builder.addFieldInt32(20, testhashs32Fnv1a, 0);
+  builder.addFieldInt32(20, testhashs32Fnv1a, undefined);
 };
 
 /**
@@ -1535,7 +1696,7 @@ MyGame.Example.Monster.addTesthashs32Fnv1a = function(builder, testhashs32Fnv1a)
  * @param {number} testhashu32Fnv1a
  */
 MyGame.Example.Monster.addTesthashu32Fnv1a = function(builder, testhashu32Fnv1a) {
-  builder.addFieldInt32(21, testhashu32Fnv1a, 0);
+  builder.addFieldInt32(21, testhashu32Fnv1a, undefined);
 };
 
 /**
@@ -1543,7 +1704,7 @@ MyGame.Example.Monster.addTesthashu32Fnv1a = function(builder, testhashu32Fnv1a)
  * @param {flatbuffers.Long} testhashs64Fnv1a
  */
 MyGame.Example.Monster.addTesthashs64Fnv1a = function(builder, testhashs64Fnv1a) {
-  builder.addFieldInt64(22, testhashs64Fnv1a, builder.createLong(0, 0));
+  builder.addFieldInt64(22, testhashs64Fnv1a, undefined);
 };
 
 /**
@@ -1551,7 +1712,7 @@ MyGame.Example.Monster.addTesthashs64Fnv1a = function(builder, testhashs64Fnv1a)
  * @param {flatbuffers.Long} testhashu64Fnv1a
  */
 MyGame.Example.Monster.addTesthashu64Fnv1a = function(builder, testhashu64Fnv1a) {
-  builder.addFieldInt64(23, testhashu64Fnv1a, builder.createLong(0, 0));
+  builder.addFieldInt64(23, testhashu64Fnv1a, undefined);
 };
 
 /**
@@ -1604,7 +1765,7 @@ MyGame.Example.Monster.addTestf2 = function(builder, testf2) {
  * @param {number} testf3
  */
 MyGame.Example.Monster.addTestf3 = function(builder, testf3) {
-  builder.addFieldFloat32(27, testf3, 0.0);
+  builder.addFieldFloat32(27, testf3, undefined);
 };
 
 /**
@@ -1650,6 +1811,62 @@ MyGame.Example.Monster.addTestarrayofsortedstruct = function(builder, testarrayo
  */
 MyGame.Example.Monster.startTestarrayofsortedstructVector = function(builder, numElems) {
   builder.startVector(8, numElems, 4);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {boolean} emptyBool
+ */
+MyGame.Example.Monster.addEmptyBool = function(builder, emptyBool) {
+  builder.addFieldInt8(30, +emptyBool, +undefined);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {flatbuffers.Long} emptyLong
+ */
+MyGame.Example.Monster.addEmptyLong = function(builder, emptyLong) {
+  builder.addFieldInt64(31, emptyLong, undefined);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} emptyInt
+ */
+MyGame.Example.Monster.addEmptyInt = function(builder, emptyInt) {
+  builder.addFieldInt32(32, emptyInt, undefined);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {boolean} testTrueBool
+ */
+MyGame.Example.Monster.addTestTrueBool = function(builder, testTrueBool) {
+  builder.addFieldInt8(33, +testTrueBool, +undefined);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} testZeroInt
+ */
+MyGame.Example.Monster.addTestZeroInt = function(builder, testZeroInt) {
+  builder.addFieldInt32(34, testZeroInt, undefined);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {flatbuffers.Long} testZeroLong
+ */
+MyGame.Example.Monster.addTestZeroLong = function(builder, testZeroLong) {
+  builder.addFieldInt64(35, testZeroLong, undefined);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} testZeroByte
+ */
+MyGame.Example.Monster.addTestZeroByte = function(builder, testZeroByte) {
+  builder.addFieldInt8(36, testZeroByte, undefined);
 };
 
 /**

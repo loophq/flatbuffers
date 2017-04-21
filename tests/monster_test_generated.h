@@ -524,6 +524,13 @@ struct MonsterT : public flatbuffers::NativeTable {
   float testf3;
   std::vector<std::string> testarrayofstring2;
   std::vector<Ability> testarrayofsortedstruct;
+  bool emptyBool;
+  int64_t emptyLong;
+  int32_t emptyInt;
+  bool testTrueBool;
+  int32_t testZeroInt;
+  int64_t testZeroLong;
+  int8_t testZeroByte;
   MonsterT()
       : mana(150),
         hp(100),
@@ -539,7 +546,14 @@ struct MonsterT : public flatbuffers::NativeTable {
         testhashu64_fnv1a(0),
         testf(3.14159f),
         testf2(3.0f),
-        testf3(0.0f) {
+        testf3(0.0f),
+        emptyBool(false),
+        emptyLong(0),
+        emptyInt(0),
+        testTrueBool(false),
+        testZeroInt(0),
+        testZeroLong(0),
+        testZeroByte(0) {
   }
 };
 
@@ -575,7 +589,14 @@ struct Monster FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
     VT_TESTF2 = 56,
     VT_TESTF3 = 58,
     VT_TESTARRAYOFSTRING2 = 60,
-    VT_TESTARRAYOFSORTEDSTRUCT = 62
+    VT_TESTARRAYOFSORTEDSTRUCT = 62,
+    VT_EMPTYBOOL = 64,
+    VT_EMPTYLONG = 66,
+    VT_EMPTYINT = 68,
+    VT_TESTTRUEBOOL = 70,
+    VT_TESTZEROINT = 72,
+    VT_TESTZEROLONG = 74,
+    VT_TESTZEROBYTE = 76
   };
   const Vec3 *pos() const {
     return GetStruct<const Vec3 *>(VT_POS);
@@ -773,6 +794,48 @@ struct Monster FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   flatbuffers::Vector<const Ability *> *mutable_testarrayofsortedstruct() {
     return GetPointer<flatbuffers::Vector<const Ability *> *>(VT_TESTARRAYOFSORTEDSTRUCT);
   }
+  bool emptyBool() const {
+    return GetField<uint8_t>(VT_EMPTYBOOL, 0) != 0;
+  }
+  bool mutate_emptyBool(bool _emptyBool) {
+    return SetField<uint8_t>(VT_EMPTYBOOL, static_cast<uint8_t>(_emptyBool), 0);
+  }
+  int64_t emptyLong() const {
+    return GetField<int64_t>(VT_EMPTYLONG, 0);
+  }
+  bool mutate_emptyLong(int64_t _emptyLong) {
+    return SetField<int64_t>(VT_EMPTYLONG, _emptyLong, 0);
+  }
+  int32_t emptyInt() const {
+    return GetField<int32_t>(VT_EMPTYINT, 0);
+  }
+  bool mutate_emptyInt(int32_t _emptyInt) {
+    return SetField<int32_t>(VT_EMPTYINT, _emptyInt, 0);
+  }
+  bool testTrueBool() const {
+    return GetField<uint8_t>(VT_TESTTRUEBOOL, 0) != 0;
+  }
+  bool mutate_testTrueBool(bool _testTrueBool) {
+    return SetField<uint8_t>(VT_TESTTRUEBOOL, static_cast<uint8_t>(_testTrueBool), 0);
+  }
+  int32_t testZeroInt() const {
+    return GetField<int32_t>(VT_TESTZEROINT, 0);
+  }
+  bool mutate_testZeroInt(int32_t _testZeroInt) {
+    return SetField<int32_t>(VT_TESTZEROINT, _testZeroInt, 0);
+  }
+  int64_t testZeroLong() const {
+    return GetField<int64_t>(VT_TESTZEROLONG, 0);
+  }
+  bool mutate_testZeroLong(int64_t _testZeroLong) {
+    return SetField<int64_t>(VT_TESTZEROLONG, _testZeroLong, 0);
+  }
+  int8_t testZeroByte() const {
+    return GetField<int8_t>(VT_TESTZEROBYTE, 0);
+  }
+  bool mutate_testZeroByte(int8_t _testZeroByte) {
+    return SetField<int8_t>(VT_TESTZEROBYTE, _testZeroByte, 0);
+  }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyField<Vec3>(verifier, VT_POS) &&
@@ -819,6 +882,13 @@ struct Monster FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
            verifier.VerifyVectorOfStrings(testarrayofstring2()) &&
            VerifyField<flatbuffers::uoffset_t>(verifier, VT_TESTARRAYOFSORTEDSTRUCT) &&
            verifier.Verify(testarrayofsortedstruct()) &&
+           VerifyField<uint8_t>(verifier, VT_EMPTYBOOL) &&
+           VerifyField<int64_t>(verifier, VT_EMPTYLONG) &&
+           VerifyField<int32_t>(verifier, VT_EMPTYINT) &&
+           VerifyField<uint8_t>(verifier, VT_TESTTRUEBOOL) &&
+           VerifyField<int32_t>(verifier, VT_TESTZEROINT) &&
+           VerifyField<int64_t>(verifier, VT_TESTZEROLONG) &&
+           VerifyField<int8_t>(verifier, VT_TESTZEROBYTE) &&
            verifier.EndTable();
   }
   MonsterT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
@@ -928,13 +998,34 @@ struct MonsterBuilder {
   void add_testarrayofsortedstruct(flatbuffers::Offset<flatbuffers::Vector<const Ability *>> testarrayofsortedstruct) {
     fbb_.AddOffset(Monster::VT_TESTARRAYOFSORTEDSTRUCT, testarrayofsortedstruct);
   }
+  void add_emptyBool(bool emptyBool) {
+    fbb_.AddElement<uint8_t>(Monster::VT_EMPTYBOOL, static_cast<uint8_t>(emptyBool), 0);
+  }
+  void add_emptyLong(int64_t emptyLong) {
+    fbb_.AddElement<int64_t>(Monster::VT_EMPTYLONG, emptyLong, 0);
+  }
+  void add_emptyInt(int32_t emptyInt) {
+    fbb_.AddElement<int32_t>(Monster::VT_EMPTYINT, emptyInt, 0);
+  }
+  void add_testTrueBool(bool testTrueBool) {
+    fbb_.AddElement<uint8_t>(Monster::VT_TESTTRUEBOOL, static_cast<uint8_t>(testTrueBool), 0);
+  }
+  void add_testZeroInt(int32_t testZeroInt) {
+    fbb_.AddElement<int32_t>(Monster::VT_TESTZEROINT, testZeroInt, 0);
+  }
+  void add_testZeroLong(int64_t testZeroLong) {
+    fbb_.AddElement<int64_t>(Monster::VT_TESTZEROLONG, testZeroLong, 0);
+  }
+  void add_testZeroByte(int8_t testZeroByte) {
+    fbb_.AddElement<int8_t>(Monster::VT_TESTZEROBYTE, testZeroByte, 0);
+  }
   MonsterBuilder(flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
   }
   MonsterBuilder &operator=(const MonsterBuilder &);
   flatbuffers::Offset<Monster> Finish() {
-    const auto end = fbb_.EndTable(start_, 30);
+    const auto end = fbb_.EndTable(start_, 37);
     auto o = flatbuffers::Offset<Monster>(end);
     fbb_.Required(o, Monster::VT_NAME);
     return o;
@@ -971,12 +1062,23 @@ inline flatbuffers::Offset<Monster> CreateMonster(
     float testf2 = 3.0f,
     float testf3 = 0.0f,
     flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> testarrayofstring2 = 0,
-    flatbuffers::Offset<flatbuffers::Vector<const Ability *>> testarrayofsortedstruct = 0) {
+    flatbuffers::Offset<flatbuffers::Vector<const Ability *>> testarrayofsortedstruct = 0,
+    bool emptyBool = false,
+    int64_t emptyLong = 0,
+    int32_t emptyInt = 0,
+    bool testTrueBool = false,
+    int32_t testZeroInt = 0,
+    int64_t testZeroLong = 0,
+    int8_t testZeroByte = 0) {
   MonsterBuilder builder_(_fbb);
+  builder_.add_testZeroLong(testZeroLong);
+  builder_.add_emptyLong(emptyLong);
   builder_.add_testhashu64_fnv1a(testhashu64_fnv1a);
   builder_.add_testhashs64_fnv1a(testhashs64_fnv1a);
   builder_.add_testhashu64_fnv1(testhashu64_fnv1);
   builder_.add_testhashs64_fnv1(testhashs64_fnv1);
+  builder_.add_testZeroInt(testZeroInt);
+  builder_.add_emptyInt(emptyInt);
   builder_.add_testarrayofsortedstruct(testarrayofsortedstruct);
   builder_.add_testarrayofstring2(testarrayofstring2);
   builder_.add_testf3(testf3);
@@ -999,6 +1101,9 @@ inline flatbuffers::Offset<Monster> CreateMonster(
   builder_.add_pos(pos);
   builder_.add_hp(hp);
   builder_.add_mana(mana);
+  builder_.add_testZeroByte(testZeroByte);
+  builder_.add_testTrueBool(testTrueBool);
+  builder_.add_emptyBool(emptyBool);
   builder_.add_testbool(testbool);
   builder_.add_test_type(test_type);
   builder_.add_color(color);
@@ -1035,7 +1140,14 @@ inline flatbuffers::Offset<Monster> CreateMonsterDirect(
     float testf2 = 3.0f,
     float testf3 = 0.0f,
     const std::vector<flatbuffers::Offset<flatbuffers::String>> *testarrayofstring2 = nullptr,
-    const std::vector<const Ability *> *testarrayofsortedstruct = nullptr) {
+    const std::vector<const Ability *> *testarrayofsortedstruct = nullptr,
+    bool emptyBool = false,
+    int64_t emptyLong = 0,
+    int32_t emptyInt = 0,
+    bool testTrueBool = false,
+    int32_t testZeroInt = 0,
+    int64_t testZeroLong = 0,
+    int8_t testZeroByte = 0) {
   return MyGame::Example::CreateMonster(
       _fbb,
       pos,
@@ -1066,7 +1178,14 @@ inline flatbuffers::Offset<Monster> CreateMonsterDirect(
       testf2,
       testf3,
       testarrayofstring2 ? _fbb.CreateVector<flatbuffers::Offset<flatbuffers::String>>(*testarrayofstring2) : 0,
-      testarrayofsortedstruct ? _fbb.CreateVector<const Ability *>(*testarrayofsortedstruct) : 0);
+      testarrayofsortedstruct ? _fbb.CreateVector<const Ability *>(*testarrayofsortedstruct) : 0,
+      emptyBool,
+      emptyLong,
+      emptyInt,
+      testTrueBool,
+      testZeroInt,
+      testZeroLong,
+      testZeroByte);
 }
 
 flatbuffers::Offset<Monster> CreateMonster(flatbuffers::FlatBufferBuilder &_fbb, const MonsterT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
@@ -1195,6 +1314,13 @@ inline void Monster::UnPackTo(MonsterT *_o, const flatbuffers::resolver_function
   { auto _e = testf3(); _o->testf3 = _e; };
   { auto _e = testarrayofstring2(); if (_e) { _o->testarrayofstring2.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->testarrayofstring2[_i] = _e->Get(_i)->str(); } } };
   { auto _e = testarrayofsortedstruct(); if (_e) { _o->testarrayofsortedstruct.resize(_e->size()); for (flatbuffers::uoffset_t _i = 0; _i < _e->size(); _i++) { _o->testarrayofsortedstruct[_i] = *_e->Get(_i); } } };
+  { auto _e = emptyBool(); _o->emptyBool = _e; };
+  { auto _e = emptyLong(); _o->emptyLong = _e; };
+  { auto _e = emptyInt(); _o->emptyInt = _e; };
+  { auto _e = testTrueBool(); _o->testTrueBool = _e; };
+  { auto _e = testZeroInt(); _o->testZeroInt = _e; };
+  { auto _e = testZeroLong(); _o->testZeroLong = _e; };
+  { auto _e = testZeroByte(); _o->testZeroByte = _e; };
 }
 
 inline flatbuffers::Offset<Monster> Monster::Pack(flatbuffers::FlatBufferBuilder &_fbb, const MonsterT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -1233,6 +1359,13 @@ inline flatbuffers::Offset<Monster> CreateMonster(flatbuffers::FlatBufferBuilder
   auto _testf3 = _o->testf3;
   auto _testarrayofstring2 = _o->testarrayofstring2.size() ? _fbb.CreateVectorOfStrings(_o->testarrayofstring2) : 0;
   auto _testarrayofsortedstruct = _o->testarrayofsortedstruct.size() ? _fbb.CreateVectorOfStructs(_o->testarrayofsortedstruct) : 0;
+  auto _emptyBool = _o->emptyBool;
+  auto _emptyLong = _o->emptyLong;
+  auto _emptyInt = _o->emptyInt;
+  auto _testTrueBool = _o->testTrueBool;
+  auto _testZeroInt = _o->testZeroInt;
+  auto _testZeroLong = _o->testZeroLong;
+  auto _testZeroByte = _o->testZeroByte;
   return MyGame::Example::CreateMonster(
       _fbb,
       _pos,
@@ -1263,7 +1396,14 @@ inline flatbuffers::Offset<Monster> CreateMonster(flatbuffers::FlatBufferBuilder
       _testf2,
       _testf3,
       _testarrayofstring2,
-      _testarrayofsortedstruct);
+      _testarrayofsortedstruct,
+      _emptyBool,
+      _emptyLong,
+      _emptyInt,
+      _testTrueBool,
+      _testZeroInt,
+      _testZeroLong,
+      _testZeroByte);
 }
 
 inline bool VerifyAny(flatbuffers::Verifier &verifier, const void *obj, Any type) {

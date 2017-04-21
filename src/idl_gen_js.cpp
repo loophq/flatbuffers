@@ -395,6 +395,9 @@ std::string GenDefaultValue(const Value &value, const std::string &context) {
     }
   }
 
+  if (value.loopEmpty) {
+    return "undefined";
+  }
   switch (value.type.base_type) {
     case BASE_TYPE_BOOL:
       return value.constant == "0" ? "false" : "true";

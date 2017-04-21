@@ -62,6 +62,7 @@ table Monster {
   testnestedflatbuffer:[ubyte] (id:13, nested_flatbuffer: "Monster");
   testempty:Stat (id:14);
   testbool:bool (id:15);
+  testTrueBool:bool (id:33);
   testhashs32_fnv1:int (id:16, hash:"fnv1_32");
   testhashu32_fnv1:uint (id:17, hash:"fnv1_32");
   testhashs64_fnv1:long (id:18, hash:"fnv1_64");
@@ -73,6 +74,12 @@ table Monster {
   testf:float = 3.14159 (id:25);
   testf2:float = 3 (id:26);
   testf3:float (id:27);
+  emptyBool:bool (id:30);
+  emptyLong:long (id:31);
+  emptyInt:int (id:32);
+  testZeroInt:int (id:34);
+  testZeroLong:long (id:35);
+  testZeroByte:byte (id:36);
 }
 
 rpc_service MonsterStorage {

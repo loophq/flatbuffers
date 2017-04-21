@@ -41,6 +41,7 @@
   enemy: {
     name: "Fred"
   },
+  testTrueBool: true,
   testarrayofbools:[
     true, false, true
   ],

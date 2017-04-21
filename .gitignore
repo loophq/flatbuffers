@@ -71,3 +71,4 @@ Testing/Temporary
 .project
 net/**/obj
 node_modules/
+cmake-build-debug/

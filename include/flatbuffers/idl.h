@@ -145,10 +145,11 @@ struct Type {
 
 // Represents a parsed scalar value, it's type, and field offset.
 struct Value {
-  Value() : constant("0"), offset(static_cast<voffset_t>(
+  Value() : constant("0"), loopEmpty(true), offset(static_cast<voffset_t>(
                                 ~(static_cast<voffset_t>(0U)))) {}
   Type type;
   std::string constant;
+  bool loopEmpty;
   voffset_t offset;
 };
 

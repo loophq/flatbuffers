@@ -14,6 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+cd ..
+make
+cd tests
+../flatc monster_test.fbs --js --gen-mutable
+
 pushd "$(dirname $0)" >/dev/null
 ../flatc -b monster_test.fbs unicode_test.json
 node JavaScriptTest

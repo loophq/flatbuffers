@@ -123,6 +123,9 @@ flatbuffers.Long.prototype.toFloat64 = function() {
  * @returns {boolean}
  */
 flatbuffers.Long.prototype.equals = function(other) {
+  if (other == null) {
+    return false;
+  }
   return this.low == other.low && this.high == other.high;
 };
 
