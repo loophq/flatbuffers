@@ -843,6 +843,22 @@ void GenStruct(StructDef &struct_def, std::string *code_ptr) {
     GenComment(field.doc_comment, code_ptr, &lang_.comment_config, "  ");
     std::string type_name = GenTypeGet(field.value.type);
     std::string type_name_dest = GenTypeNameDest(field.value.type);
+    std::string type_name_dest_box;
+    if (lang_.language == IDLOptions::kJava) {
+      if (type_name_dest == "int") {
+        type_name_dest_box = "Integer";
+      } else if (type_name_dest == "byte") {
+        type_name_dest_box = "Byte";
+      } else if (type_name_dest == "boolean") {
+        type_name_dest_box = "Boolean";
+      } else if (type_name_dest == "long") {
+        type_name_dest_box = "Long";
+      } else {
+        type_name_dest_box = type_name_dest;
+      }
+    } else {
+      type_name_dest_box = type_name_dest;
+    }
     std::string conditional_cast = "";
     std::string optional = "";
     if (lang_.language == IDLOptions::kCSharp &&
@@ -857,7 +873,7 @@ void GenStruct(StructDef &struct_def, std::string *code_ptr) {
     std::string dest_mask = DestinationMask(field.value.type, true);
     std::string dest_cast = DestinationCast(field.value.type);
     std::string src_cast = SourceCast(field.value.type);
-    std::string method_start = "  public " + type_name_dest + optional + " " +
+    std::string method_start = "  public " + type_name_dest_box + optional + " " +
                                MakeCamel(field.name, lang_.first_camel_upper);
     std::string obj = lang_.language == IDLOptions::kCSharp
       ? "(new " + type_name + "())"
@@ -924,8 +940,12 @@ void GenStruct(StructDef &struct_def, std::string *code_ptr) {
       } else {
         code += offset_prefix + getter;
         code += "(o + " + lang_.accessor_prefix + "bb_pos)" + dest_mask;
-        code += " : " + default_cast;
-        code += GenDefaultValue(field.value);
+        if (field.value.loopEmpty) {
+          code += " : null";
+        } else {
+          code += " : " + default_cast;
+          code += GenDefaultValue(field.value);
+        }
       }
     } else {
       switch (field.value.type.base_type) {

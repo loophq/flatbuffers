@@ -20,7 +20,7 @@ public final class Vec3 extends Struct {
   public void mutateZ(float z) { bb.putFloat(bb_pos + 8, z); }
   public double test1() { return bb.getDouble(bb_pos + 16); }
   public void mutateTest1(double test1) { bb.putDouble(bb_pos + 16, test1); }
-  public byte test2() { return bb.get(bb_pos + 24); }
+  public Byte test2() { return bb.get(bb_pos + 24); }
   public void mutateTest2(byte test2) { bb.put(bb_pos + 24, test2); }
   public Test test3() { return test3(new Test()); }
   public Test test3(Test obj) { return obj.__assign(bb_pos + 26, bb); }

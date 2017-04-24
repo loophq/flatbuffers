@@ -14,7 +14,7 @@ public final class Test extends Struct {
 
   public short a() { return bb.getShort(bb_pos + 0); }
   public void mutateA(short a) { bb.putShort(bb_pos + 0, a); }
-  public byte b() { return bb.get(bb_pos + 2); }
+  public Byte b() { return bb.get(bb_pos + 2); }
   public void mutateB(byte b) { bb.put(bb_pos + 2, b); }
 
   public static int createTest(FlatBufferBuilder builder, short a, byte b) {

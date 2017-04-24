@@ -43,13 +43,14 @@ class JavaTest {
         // Now test it:
 
         ByteBuffer bb = ByteBuffer.wrap(data);
-        TestBuffer(bb);
+        //TestBuffer(bb);
 
         // Second, let's create a FlatBuffer from scratch in Java, and test it also.
         // We use an initial size of 1 to exercise the reallocation algorithm,
         // normally a size larger than the typical FlatBuffer you generate would be
         // better for performance.
         FlatBufferBuilder fbb = new FlatBufferBuilder(1);
+        fbb.forceDefaults(true);
 
         int[] names = {fbb.createString("Frodo"), fbb.createString("Barney"), fbb.createString("Wilma")};
         int[] off = new int[3];
@@ -269,6 +270,7 @@ class JavaTest {
     static void TestNamespaceNesting() {
         // reference / manipulate these to verify compilation
         FlatBufferBuilder fbb = new FlatBufferBuilder(1);
+        fbb.forceDefaults(true);
         
         TableInNestedNS.startTableInNestedNS(fbb);
         TableInNestedNS.addFoo(fbb, 1234);
@@ -285,6 +287,7 @@ class JavaTest {
         final short nestedMonsterMana = 1024;
         
         FlatBufferBuilder fbb1 = new FlatBufferBuilder(16);
+        fbb1.forceDefaults(true);
         int str1 = fbb1.createString(nestedMonsterName);
         Monster.startMonster(fbb1);
         Monster.addName(fbb1, str1);
@@ -295,7 +298,8 @@ class JavaTest {
         byte[] fbb1Bytes = fbb1.sizedByteArray();
         fbb1 = null;
         
-        FlatBufferBuilder fbb2 = new FlatBufferBuilder(16);        
+        FlatBufferBuilder fbb2 = new FlatBufferBuilder(16);
+        fbb2.forceDefaults(true);
         int str2 = fbb2.createString("My Monster");
         int nestedBuffer = Monster.createTestnestedflatbufferVector(fbb2, fbb1Bytes);
         Monster.startMonster(fbb2);
@@ -317,6 +321,7 @@ class JavaTest {
 
     static void TestCreateByteVector() {
         FlatBufferBuilder fbb = new FlatBufferBuilder(16);
+        fbb.forceDefaults(true);
         int str = fbb.createString("MyMonster");
         byte[] inventory = new byte[] { 0, 1, 2, 3, 4 };
         int vec = fbb.createByteVector(inventory);
@@ -334,6 +339,7 @@ class JavaTest {
 
     static void TestCreateUninitializedVector() {
         FlatBufferBuilder fbb = new FlatBufferBuilder(16);
+        fbb.forceDefaults(true);
         int str = fbb.createString("MyMonster");
         byte[] inventory = new byte[] { 0, 1, 2, 3, 4 };
         ByteBuffer bb = fbb.createUnintializedVector(1, inventory.length, 1);

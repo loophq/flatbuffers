@@ -26,13 +26,13 @@ public final class Monster extends Table {
   public boolean mutateHp(short hp) { int o = __offset(8); if (o != 0) { bb.putShort(o + bb_pos, hp); return true; } else { return false; } }
   public String name() { int o = __offset(10); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer nameAsByteBuffer() { return __vector_as_bytebuffer(10, 1); }
-  public int inventory(int j) { int o = __offset(14); return o != 0 ? bb.get(__vector(o) + j * 1) & 0xFF : 0; }
+  public Integer inventory(int j) { int o = __offset(14); return o != 0 ? bb.get(__vector(o) + j * 1) & 0xFF : 0; }
   public int inventoryLength() { int o = __offset(14); return o != 0 ? __vector_len(o) : 0; }
   public ByteBuffer inventoryAsByteBuffer() { return __vector_as_bytebuffer(14, 1); }
   public boolean mutateInventory(int j, int inventory) { int o = __offset(14); if (o != 0) { bb.put(__vector(o) + j * 1, (byte)inventory); return true; } else { return false; } }
-  public byte color() { int o = __offset(16); return o != 0 ? bb.get(o + bb_pos) : 8; }
+  public Byte color() { int o = __offset(16); return o != 0 ? bb.get(o + bb_pos) : 8; }
   public boolean mutateColor(byte color) { int o = __offset(16); if (o != 0) { bb.put(o + bb_pos, color); return true; } else { return false; } }
-  public byte testType() { int o = __offset(18); return o != 0 ? bb.get(o + bb_pos) : 0; }
+  public Byte testType() { int o = __offset(18); return o != 0 ? bb.get(o + bb_pos) : null; }
   public boolean mutateTestType(byte test_type) { int o = __offset(18); if (o != 0) { bb.put(o + bb_pos, test_type); return true; } else { return false; } }
   public Table test(Table obj) { int o = __offset(20); return o != 0 ? __union(obj, o) : null; }
   public Test test4(int j) { return test4(new Test(), j); }
@@ -49,7 +49,7 @@ public final class Monster extends Table {
   public int testarrayoftablesLength() { int o = __offset(26); return o != 0 ? __vector_len(o) : 0; }
   public Monster enemy() { return enemy(new Monster()); }
   public Monster enemy(Monster obj) { int o = __offset(28); return o != 0 ? obj.__assign(__indirect(o + bb_pos), bb) : null; }
-  public int testnestedflatbuffer(int j) { int o = __offset(30); return o != 0 ? bb.get(__vector(o) + j * 1) & 0xFF : 0; }
+  public Integer testnestedflatbuffer(int j) { int o = __offset(30); return o != 0 ? bb.get(__vector(o) + j * 1) & 0xFF : 0; }
   public int testnestedflatbufferLength() { int o = __offset(30); return o != 0 ? __vector_len(o) : 0; }
   public ByteBuffer testnestedflatbufferAsByteBuffer() { return __vector_as_bytebuffer(30, 1); }
   public Monster testnestedflatbufferAsMonster() { return testnestedflatbufferAsMonster(new Monster()); }
@@ -57,25 +57,25 @@ public final class Monster extends Table {
   public boolean mutateTestnestedflatbuffer(int j, int testnestedflatbuffer) { int o = __offset(30); if (o != 0) { bb.put(__vector(o) + j * 1, (byte)testnestedflatbuffer); return true; } else { return false; } }
   public Stat testempty() { return testempty(new Stat()); }
   public Stat testempty(Stat obj) { int o = __offset(32); return o != 0 ? obj.__assign(__indirect(o + bb_pos), bb) : null; }
-  public boolean testbool() { int o = __offset(34); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
+  public Boolean testbool() { int o = __offset(34); return o != 0 ? 0!=bb.get(o + bb_pos) : null; }
   public boolean mutateTestbool(boolean testbool) { int o = __offset(34); if (o != 0) { bb.put(o + bb_pos, (byte)(testbool ? 1 : 0)); return true; } else { return false; } }
-  public int testhashs32Fnv1() { int o = __offset(36); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
+  public Integer testhashs32Fnv1() { int o = __offset(36); return o != 0 ? bb.getInt(o + bb_pos) : null; }
   public boolean mutateTesthashs32Fnv1(int testhashs32_fnv1) { int o = __offset(36); if (o != 0) { bb.putInt(o + bb_pos, testhashs32_fnv1); return true; } else { return false; } }
-  public long testhashu32Fnv1() { int o = __offset(38); return o != 0 ? (long)bb.getInt(o + bb_pos) & 0xFFFFFFFFL : 0L; }
+  public Long testhashu32Fnv1() { int o = __offset(38); return o != 0 ? (long)bb.getInt(o + bb_pos) & 0xFFFFFFFFL : null; }
   public boolean mutateTesthashu32Fnv1(long testhashu32_fnv1) { int o = __offset(38); if (o != 0) { bb.putInt(o + bb_pos, (int)testhashu32_fnv1); return true; } else { return false; } }
-  public long testhashs64Fnv1() { int o = __offset(40); return o != 0 ? bb.getLong(o + bb_pos) : 0L; }
+  public Long testhashs64Fnv1() { int o = __offset(40); return o != 0 ? bb.getLong(o + bb_pos) : null; }
   public boolean mutateTesthashs64Fnv1(long testhashs64_fnv1) { int o = __offset(40); if (o != 0) { bb.putLong(o + bb_pos, testhashs64_fnv1); return true; } else { return false; } }
-  public long testhashu64Fnv1() { int o = __offset(42); return o != 0 ? bb.getLong(o + bb_pos) : 0L; }
+  public Long testhashu64Fnv1() { int o = __offset(42); return o != 0 ? bb.getLong(o + bb_pos) : null; }
   public boolean mutateTesthashu64Fnv1(long testhashu64_fnv1) { int o = __offset(42); if (o != 0) { bb.putLong(o + bb_pos, testhashu64_fnv1); return true; } else { return false; } }
-  public int testhashs32Fnv1a() { int o = __offset(44); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
+  public Integer testhashs32Fnv1a() { int o = __offset(44); return o != 0 ? bb.getInt(o + bb_pos) : null; }
   public boolean mutateTesthashs32Fnv1a(int testhashs32_fnv1a) { int o = __offset(44); if (o != 0) { bb.putInt(o + bb_pos, testhashs32_fnv1a); return true; } else { return false; } }
-  public long testhashu32Fnv1a() { int o = __offset(46); return o != 0 ? (long)bb.getInt(o + bb_pos) & 0xFFFFFFFFL : 0L; }
+  public Long testhashu32Fnv1a() { int o = __offset(46); return o != 0 ? (long)bb.getInt(o + bb_pos) & 0xFFFFFFFFL : null; }
   public boolean mutateTesthashu32Fnv1a(long testhashu32_fnv1a) { int o = __offset(46); if (o != 0) { bb.putInt(o + bb_pos, (int)testhashu32_fnv1a); return true; } else { return false; } }
-  public long testhashs64Fnv1a() { int o = __offset(48); return o != 0 ? bb.getLong(o + bb_pos) : 0L; }
+  public Long testhashs64Fnv1a() { int o = __offset(48); return o != 0 ? bb.getLong(o + bb_pos) : null; }
   public boolean mutateTesthashs64Fnv1a(long testhashs64_fnv1a) { int o = __offset(48); if (o != 0) { bb.putLong(o + bb_pos, testhashs64_fnv1a); return true; } else { return false; } }
-  public long testhashu64Fnv1a() { int o = __offset(50); return o != 0 ? bb.getLong(o + bb_pos) : 0L; }
+  public Long testhashu64Fnv1a() { int o = __offset(50); return o != 0 ? bb.getLong(o + bb_pos) : null; }
   public boolean mutateTesthashu64Fnv1a(long testhashu64_fnv1a) { int o = __offset(50); if (o != 0) { bb.putLong(o + bb_pos, testhashu64_fnv1a); return true; } else { return false; } }
-  public boolean testarrayofbools(int j) { int o = __offset(52); return o != 0 ? 0!=bb.get(__vector(o) + j * 1) : false; }
+  public Boolean testarrayofbools(int j) { int o = __offset(52); return o != 0 ? 0!=bb.get(__vector(o) + j * 1) : false; }
   public int testarrayofboolsLength() { int o = __offset(52); return o != 0 ? __vector_len(o) : 0; }
   public ByteBuffer testarrayofboolsAsByteBuffer() { return __vector_as_bytebuffer(52, 1); }
   public boolean mutateTestarrayofbools(int j, boolean testarrayofbools) { int o = __offset(52); if (o != 0) { bb.put(__vector(o) + j * 1, (byte)(testarrayofbools ? 1 : 0)); return true; } else { return false; } }
@@ -83,26 +83,26 @@ public final class Monster extends Table {
   public boolean mutateTestf(float testf) { int o = __offset(54); if (o != 0) { bb.putFloat(o + bb_pos, testf); return true; } else { return false; } }
   public float testf2() { int o = __offset(56); return o != 0 ? bb.getFloat(o + bb_pos) : 3.0f; }
   public boolean mutateTestf2(float testf2) { int o = __offset(56); if (o != 0) { bb.putFloat(o + bb_pos, testf2); return true; } else { return false; } }
-  public float testf3() { int o = __offset(58); return o != 0 ? bb.getFloat(o + bb_pos) : 0.0f; }
+  public float testf3() { int o = __offset(58); return o != 0 ? bb.getFloat(o + bb_pos) : null; }
   public boolean mutateTestf3(float testf3) { int o = __offset(58); if (o != 0) { bb.putFloat(o + bb_pos, testf3); return true; } else { return false; } }
   public String testarrayofstring2(int j) { int o = __offset(60); return o != 0 ? __string(__vector(o) + j * 4) : null; }
   public int testarrayofstring2Length() { int o = __offset(60); return o != 0 ? __vector_len(o) : 0; }
   public Ability testarrayofsortedstruct(int j) { return testarrayofsortedstruct(new Ability(), j); }
   public Ability testarrayofsortedstruct(Ability obj, int j) { int o = __offset(62); return o != 0 ? obj.__assign(__vector(o) + j * 8, bb) : null; }
   public int testarrayofsortedstructLength() { int o = __offset(62); return o != 0 ? __vector_len(o) : 0; }
-  public boolean emptyBool() { int o = __offset(64); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
+  public Boolean emptyBool() { int o = __offset(64); return o != 0 ? 0!=bb.get(o + bb_pos) : null; }
   public boolean mutateEmptyBool(boolean emptyBool) { int o = __offset(64); if (o != 0) { bb.put(o + bb_pos, (byte)(emptyBool ? 1 : 0)); return true; } else { return false; } }
-  public long emptyLong() { int o = __offset(66); return o != 0 ? bb.getLong(o + bb_pos) : 0L; }
+  public Long emptyLong() { int o = __offset(66); return o != 0 ? bb.getLong(o + bb_pos) : null; }
   public boolean mutateEmptyLong(long emptyLong) { int o = __offset(66); if (o != 0) { bb.putLong(o + bb_pos, emptyLong); return true; } else { return false; } }
-  public int emptyInt() { int o = __offset(68); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
+  public Integer emptyInt() { int o = __offset(68); return o != 0 ? bb.getInt(o + bb_pos) : null; }
   public boolean mutateEmptyInt(int emptyInt) { int o = __offset(68); if (o != 0) { bb.putInt(o + bb_pos, emptyInt); return true; } else { return false; } }
-  public boolean testTrueBool() { int o = __offset(70); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
+  public Boolean testTrueBool() { int o = __offset(70); return o != 0 ? 0!=bb.get(o + bb_pos) : null; }
   public boolean mutateTestTrueBool(boolean testTrueBool) { int o = __offset(70); if (o != 0) { bb.put(o + bb_pos, (byte)(testTrueBool ? 1 : 0)); return true; } else { return false; } }
-  public int testZeroInt() { int o = __offset(72); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
+  public Integer testZeroInt() { int o = __offset(72); return o != 0 ? bb.getInt(o + bb_pos) : null; }
   public boolean mutateTestZeroInt(int testZeroInt) { int o = __offset(72); if (o != 0) { bb.putInt(o + bb_pos, testZeroInt); return true; } else { return false; } }
-  public long testZeroLong() { int o = __offset(74); return o != 0 ? bb.getLong(o + bb_pos) : 0L; }
+  public Long testZeroLong() { int o = __offset(74); return o != 0 ? bb.getLong(o + bb_pos) : null; }
   public boolean mutateTestZeroLong(long testZeroLong) { int o = __offset(74); if (o != 0) { bb.putLong(o + bb_pos, testZeroLong); return true; } else { return false; } }
-  public byte testZeroByte() { int o = __offset(76); return o != 0 ? bb.get(o + bb_pos) : 0; }
+  public Byte testZeroByte() { int o = __offset(76); return o != 0 ? bb.get(o + bb_pos) : null; }
   public boolean mutateTestZeroByte(byte testZeroByte) { int o = __offset(76); if (o != 0) { bb.put(o + bb_pos, testZeroByte); return true; } else { return false; } }
 
   public static void startMonster(FlatBufferBuilder builder) { builder.startObject(37); }

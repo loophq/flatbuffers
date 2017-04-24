@@ -12,9 +12,9 @@ public final class Ability extends Struct {
   public void __init(int _i, ByteBuffer _bb) { bb_pos = _i; bb = _bb; }
   public Ability __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
-  public long id() { return (long)bb.getInt(bb_pos + 0) & 0xFFFFFFFFL; }
+  public Long id() { return (long)bb.getInt(bb_pos + 0) & 0xFFFFFFFFL; }
   public void mutateId(long id) { bb.putInt(bb_pos + 0, (int)id); }
-  public long distance() { return (long)bb.getInt(bb_pos + 4) & 0xFFFFFFFFL; }
+  public Long distance() { return (long)bb.getInt(bb_pos + 4) & 0xFFFFFFFFL; }
   public void mutateDistance(long distance) { bb.putInt(bb_pos + 4, (int)distance); }
 
   public static int createAbility(FlatBufferBuilder builder, long id, long distance) {
