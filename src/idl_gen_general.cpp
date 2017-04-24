@@ -853,6 +853,8 @@ void GenStruct(StructDef &struct_def, std::string *code_ptr) {
         type_name_dest_box = "Boolean";
       } else if (type_name_dest == "long") {
         type_name_dest_box = "Long";
+      } else if (type_name_dest == "double") {
+        type_name_dest_box = "Double";
       } else {
         type_name_dest_box = type_name_dest;
       }
